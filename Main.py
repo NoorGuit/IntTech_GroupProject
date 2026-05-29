@@ -2,6 +2,7 @@ from PIL.ImageChops import difference
 from websockets.sync.client import connect
 import math as math
 import json
+from Processing import process
 
 def receive_data():
     #max_msg = 10  # Feel free to change this or just let it loop forever. Maybe best to keep it low while testing...
@@ -27,7 +28,7 @@ def receive_data():
 def handle_message(msg):
     #print(msg)
     message = msg
-    if "altitude" in message and "latitude" in message and "longitude" in message:
+    if "altitude" in message and "latitude" in message and "longitude" in message and "address" in message and "rssi" in message and "receiver" in message and "timestamp" in message:
         altitude = message["altitude"]
         latitude = message["latitude"]
         longitude = message["longitude"]
@@ -38,9 +39,6 @@ def handle_message(msg):
         distance = 2*6371*math.asin(math.sqrt(math.pow(math.sin((ut_latitude - latitude)/2), 2) + math.cos(latitude)*math.cos(ut_latitude)*math.pow(math.sin((ut_longitude - longitude)/2), 2)))
         altitude_difference = altitude - ut_altitude
         real_distance = math.sqrt(math.pow(altitude_difference, 2) + math.pow(distance, 2))
-        print(
-            [message["address"], real_distance, message["rssi"], message["receiver"]]
-        )
-
+        process([message["address"], real_distance, message["rssi"], message["receiver"], message["timestamp"]])
 
 receive_data()
