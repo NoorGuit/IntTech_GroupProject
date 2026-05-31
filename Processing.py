@@ -35,9 +35,9 @@ def process(raw_data):
     time = raw_data[4]
 
     #check if plane is already in data, append/change when necessary
-    if receiver == "Zi-5110" and f"{plane_id}" not in plane_5110:
+    if receiver == "zi-5110" and f"{plane_id}" not in plane_5110:
         plane_5110.append(f"{plane_id}")
-    elif receiver == "Zi-5067" and f"{plane_id}" not in plane_5067:
+    elif receiver == "zi-5067" and f"{plane_id}" not in plane_5067:
         plane_5067.append(f"{plane_id}")
 
     #determine plane count
@@ -49,9 +49,9 @@ def process(raw_data):
         data["Zi-5067_planes"] += 1
 
     #determine signal strength
-    if receiver == "Zi-5110":
+    if receiver == "zi-5110":
         strength_5110[f"{plane_id}"] = rssi
-    elif receiver == "Zi-5067":
+    elif receiver == "zi-5067":
         strength_5067[f"{plane_id}"] = rssi
     data["Zi-5110_strength"] = 0
     data["Zi-5067_strength"] = 0
@@ -61,9 +61,9 @@ def process(raw_data):
         data["Zi-5067_strength"] += signal
 
     #normalize signal strength by distance
-    if receiver == "Zi-5110":
+    if receiver == "zi-5110":
         norm_strength_5110[f"{plane_id}"] = rssi/distance
-    elif receiver == "Zi-5067":
+    elif receiver == "zi-5067":
         norm_strength_5067[f"{plane_id}"] = rssi/distance
     data["Zi-5110_normalized"] = 0
     data["Zi-5067_normalized"] = 0
@@ -73,9 +73,9 @@ def process(raw_data):
         data["Zi-5067_normalized"] += signal
 
     #remove old values
-    if receiver == "Zi-5110":
+    if receiver == "zi-5110":
         time_5110[f"{plane_id}"] = time
-    elif receiver == "Zi-5067":
+    elif receiver == "zi-5067":
         time_5067[f"{plane_id}"] = time
     for plane, stamp in time_5110.items():
         isolated_stamp = datetime.fromisoformat(stamp)

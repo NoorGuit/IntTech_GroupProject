@@ -40,5 +40,6 @@ def handle_message(msg):
         altitude_difference = altitude - ut_altitude
         real_distance = math.sqrt(math.pow(altitude_difference, 2) + math.pow(distance, 2))
         process([message["address"], real_distance, message["rssi"], message["receiver"], message["timestamp"]])
+        print([message["address"], real_distance, message["rssi"], message["receiver"], message["timestamp"]])
 
 receive_data()
