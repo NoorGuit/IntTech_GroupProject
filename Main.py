@@ -33,7 +33,7 @@ def handle_message(msg):
         longitude = message["longitude"]
         ut_latitude = 52.23922416681472
         ut_longitude = 6.856894449721378
-        ut_altitude = 0
+        ut_altitude = 47
         #d = 2R × sin⁻¹(√[sin²((θ₂ - θ₁)/2) + cosθ₁ × cosθ₂ × sin²((φ₂ - φ₁)/2)])
         distance = 2*6371*math.asin(math.sqrt(math.pow(math.sin((ut_latitude - latitude)/2), 2) + math.cos(latitude)*math.cos(ut_latitude)*math.pow(math.sin((ut_longitude - longitude)/2), 2)))
         altitude_difference = altitude - ut_altitude
