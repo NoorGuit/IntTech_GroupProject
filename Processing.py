@@ -62,9 +62,9 @@ def process(raw_data):
 
     #normalize signal strength by distance
     if receiver == "zi-5110":
-        norm_strength_5110[f"{plane_id}"] = rssi/distance
+        norm_strength_5110[f"{plane_id}"] = (rssi/distance)*10000
     elif receiver == "zi-5067":
-        norm_strength_5067[f"{plane_id}"] = rssi/distance
+        norm_strength_5067[f"{plane_id}"] = (rssi/distance)*10000
     data["Zi-5110_normalized"] = 0
     data["Zi-5067_normalized"] = 0
     for signal in norm_strength_5110.values():

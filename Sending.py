@@ -7,7 +7,7 @@ import json
 #     print(p.device)
 
 ser = serial.Serial(
-    port='COM6',      # Change this
+    port='COM7',      # Change this
     baudrate=115200,
     timeout=1
 )
@@ -16,4 +16,4 @@ def send_data(message):
     global ser
     data = json.dumps(message) + "\n"
     ser.write(data.encode("utf-8"))
-    print(f"Send: {message}")
+    print(f"Send: {data}")
