@@ -7,7 +7,7 @@ import json
 #     print(p.device)
 
 ser = serial.Serial(
-    port='COM7',      # Change this
+    port='COM7',
     baudrate=115200,
     timeout=1
 )

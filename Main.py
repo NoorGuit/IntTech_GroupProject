@@ -6,7 +6,7 @@ from Processing import process
 
 def receive_data():
     #max_msg = 10  # Feel free to change this or just let it loop forever. Maybe best to keep it low while testing...
-    with connect("ws://192.87.172.82:1338") as websocket:
+    with connect("ws://192.87.172.82:1338", ping_timeout=None, ping_interval=None) as websocket:
         count = 0
         while True: #count < max_msg:
             msg = websocket.recv()

@@ -59,6 +59,8 @@ def process(raw_data):
         data["Zi-5110_strength"] += signal
     for signal in strength_5067.values():
         data["Zi-5067_strength"] += signal
+    data["Zi-5110_strength"] = int(data["Zi-5110_strength"])
+    data["Zi-5067_strength"] = int(data["Zi-5067_strength"])
 
     #normalize signal strength by distance
     if receiver == "zi-5110":
@@ -71,6 +73,8 @@ def process(raw_data):
         data["Zi-5110_normalized"] += signal
     for signal in norm_strength_5067.values():
         data["Zi-5067_normalized"] += signal
+    data["Zi-5110_normalized"] = int(data["Zi-5110_normalized"])
+    data["Zi-5067_normalized"] = int(data["Zi-5067_normalized"])
 
     #remove old values
     if receiver == "zi-5110":
