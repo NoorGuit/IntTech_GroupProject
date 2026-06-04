@@ -112,6 +112,6 @@ def process(raw_data):
     global count
     if count == 0:
         send_data(data)
-        count = 10
+        count = 2
     else:
         count -= 1
