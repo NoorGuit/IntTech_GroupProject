@@ -26,6 +26,8 @@ norm_strength_5067 = dict()
 time_5110 = dict()
 time_5067 = dict()
 
+count = 0
+
 #proccess gets called every time that there is a new row of data coming in
 def process(raw_data):
     global data, plane_5110, plane_5067, strength_5110, strength_5067, norm_strength_5110, norm_strength_5067, time_5110, time_5067
@@ -107,4 +109,9 @@ def process(raw_data):
             time_5067.pop(plane)
 
     #send message
-    send_data(data)
+    global count
+    if count == 0:
+        send_data(data)
+        count = 10
+    else:
+        count -= 1
