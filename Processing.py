@@ -1,3 +1,4 @@
+import math
 from datetime import datetime
 from Sending import send_data
 #recieve an array with the data points (address, distance, rssi, receiver, timestamp)
@@ -63,10 +64,11 @@ def process(raw_data):
     data["Zi-5067_strength"] = int(data["Zi-5067_strength"])
 
     #normalize signal strength by distance
+    #Friis transmission equation
     if receiver == "zi-5110":
-        norm_strength_5110[f"{plane_id}"] = (rssi/distance)*10000
+        norm_strength_5110[f"{plane_id}"] = rssi + 20*math.log((1090*10**6)*distance, 10)
     elif receiver == "zi-5067":
-        norm_strength_5067[f"{plane_id}"] = (rssi/distance)*10000
+        norm_strength_5067[f"{plane_id}"] = rssi + 20*math.log((1090*10**6)*distance, 10)
     data["Zi-5110_normalized"] = 0
     data["Zi-5067_normalized"] = 0
     for signal in norm_strength_5110.values():
